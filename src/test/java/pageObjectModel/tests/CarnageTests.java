@@ -2,10 +2,7 @@ package pageObjectModel.tests;
 
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
-import pageObjectModel.pages.BasePage;
-import pageObjectModel.pages.BlackFridayPage;
-import pageObjectModel.pages.CarnageHomePage;
-import pageObjectModel.pages.CarnageHoodiesPage;
+import pageObjectModel.pages.*;
 import pageObjectModel.utilities.ConfigReader;
 import pageObjectModel.utilities.Utilities;
 
@@ -31,10 +28,9 @@ public class CarnageTests extends Utilities {
         homePage.scrollPage(0, 300);
         BlackFridayPage salePage = homePage.clickShopSaleButton();
         salePage.selectAvailabilityDropdown();
-        salePage.selectAvailabilityCheckbox();
-        Thread.sleep(2000);
-        salePage.hoverOverFirstProductCard();
-        salePage.setQuickAdd();
+        InStockPage inStockPage = salePage.selectAvailabilityCheckbox();
+        AddToCart addToCart = inStockPage.clickFirstProductCard();
+        addToCart.addToCart();
         Thread.sleep(5000);
     }
 }
