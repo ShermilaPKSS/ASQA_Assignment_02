@@ -17,7 +17,7 @@ public class CarnageHoodiesPage extends BasePage {
     @FindBy(xpath = "//div[text()='size']")
     public WebElement sizeDropdown;
 
-    @FindBy(xpath = "//div[text()='In stock']")
+    @FindBy(xpath = "//div[text()='S']")
     public WebElement sizeCheckbox;
 
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));

@@ -26,7 +26,7 @@ public class BlackFridayPage extends BasePage {
         @FindBy(xpath = "//div[text()='Availability']")
         public WebElement availabilityDropdown;
 
-        @FindBy(xpath = "//div[text()='Availability']")
+        @FindBy(xpath = "//div[text()='In stock']")
         public WebElement inStock;
 
         @FindBy(xpath = "//*[@id='ProductCard-7293044981966']/div/div/div[1]/button")

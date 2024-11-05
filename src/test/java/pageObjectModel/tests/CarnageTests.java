@@ -13,16 +13,16 @@ public class CarnageTests extends Utilities {
 
     String url = ConfigReader.getProperty("url");
 
-//    @Test (priority = 1)
-//    public void selectHoodies() throws InterruptedException {
-//        BasePage basePage = PageFactory.initElements(browserFactory.getDriver(), BasePage.class);
-//        CarnageHomePage homePage = basePage.loadUrl(url);
-//        homePage.hoverAndSelectWomenMenuItem();
-//        CarnageHoodiesPage hoodiesPage = homePage.clickHoodiesButton();
-//        hoodiesPage.selectSizeDropdown();
-//        hoodiesPage.selectSizeCheckbox();
-//        Thread.sleep(2000);
-//    }
+    @Test (priority = 1)
+    public void selectHoodies() throws InterruptedException {
+        BasePage basePage = PageFactory.initElements(browserFactory.getDriver(), BasePage.class);
+        CarnageHomePage homePage = basePage.loadUrl(url);
+        homePage.hoverAndSelectWomenMenuItem();
+        CarnageHoodiesPage hoodiesPage = homePage.clickHoodiesButton();
+        hoodiesPage.selectSizeDropdown();
+        hoodiesPage.selectSizeCheckbox();
+        Thread.sleep(2000);
+    }
 
     @Test (priority = 2)
     public void shopSale() throws InterruptedException {
