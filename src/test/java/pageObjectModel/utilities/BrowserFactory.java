@@ -23,7 +23,7 @@ public class BrowserFactory {
             default:
                 throw new RuntimeException("Unsupported browser: " + browser);
         }
-        driver.manage().window().maximize();
+//        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         return driver;
     });
