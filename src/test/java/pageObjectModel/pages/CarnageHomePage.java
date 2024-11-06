@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -24,6 +25,18 @@ public class CarnageHomePage extends BasePage{
 
     @FindBy(xpath = "//a[@class='button w-fit']")
     public WebElement shopSaleButton;
+
+    @FindBy(xpath = "//input[@class='max-xl:hidden placeholder:text-[var(--text-color)]']")
+    public WebElement searchField;
+
+    @FindBy(xpath = "//input[@id='Search']")
+    public WebElement searchInputLocator;
+
+    @FindBy(xpath = "//button[@class='w-full md:w-1/4']")
+    public WebElement searchIcon;
+
+    @FindBy(xpath = "//a[@href='https://careers.incarnage.com/']")
+    public WebElement careersButton;
 
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -54,5 +67,41 @@ public class CarnageHomePage extends BasePage{
 
         wait.until(ExpectedConditions.titleContains("Black Friday"));
         return (T) PageFactory.initElements(driver, BlackFridayPage.class);
+    }
+
+    public void searchText(String query) throws InterruptedException {
+        // Click on the search icon
+        wait.until(ExpectedConditions.visibilityOf(searchField));
+        searchField.click();
+
+        // Wait for the search input to become visible in the popup
+        WebElement searchInput = wait.until(ExpectedConditions.visibilityOf(searchInputLocator));
+
+        // Clear any pre-existing text
+        searchInput.clear();
+
+        // Send keys one by one with a delay
+        for (char c : query.toCharArray()) {
+            searchInput.sendKeys(Character.toString(c));
+            Thread.sleep(1000); // Adding a slight delay (1000 ms)
+        }
+
+        // Assertion to check if the search input field is displayed (indicating that the popup is displayed)
+        Assert.assertTrue(searchInput.isDisplayed(), "Search input is not displayed.");
+
+        System.out.println("Search popup is displayed, and search text entered successfully.");
+    }
+
+    public <T> T clickSearchButton() {
+        wait.until(ExpectedConditions.visibilityOf(searchIcon));
+        searchIcon.click();
+        return (T) PageFactory.initElements(driver, BagPage.class);
+    }
+
+    public <T> T clickCareersButton() {
+        wait.until(ExpectedConditions.visibilityOf(careersButton));
+        careersButton.click();
+
+        return (T) PageFactory.initElements(driver, JobDisplay.class);
     }
 }

@@ -18,8 +18,16 @@ public class AddToCart extends BasePage{
     @FindBy(xpath = "//h5[text()='Add to Cart']")
     public WebElement addToCartButton;
 
+    @FindBy(xpath = "//div[@class='cart-increment-btn']")
+    public WebElement incrementIcon;
+
     public void addToCart() {
         wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
         addToCartButton.click();
+    }
+
+    public void increaseCount() {
+        wait.until(ExpectedConditions.elementToBeClickable(incrementIcon));
+        incrementIcon.click();
     }
 }
