@@ -38,6 +38,9 @@ public class CarnageHomePage extends BasePage{
     @FindBy(xpath = "//a[@href='https://careers.incarnage.com/']")
     public WebElement careersButton;
 
+    @FindBy(xpath = "//div[contains(@class, 'flex') and contains(@class, 'flex-col') and contains(@class, 'items-start') and contains(@class, 'space-y-1') and contains(@class, 'w-full')]//a[6]\n")
+    public WebElement requestButton;
+
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
     public void hoverAndSelectWomenMenuItem() {
@@ -103,5 +106,12 @@ public class CarnageHomePage extends BasePage{
         careersButton.click();
 
         return (T) PageFactory.initElements(driver, JobDisplay.class);
+    }
+
+    public <T> T submitRequestButton() {
+        wait.until(ExpectedConditions.visibilityOf(requestButton));
+        requestButton.click();
+
+        return (T) PageFactory.initElements(driver, CarnageSupport.class);
     }
 }

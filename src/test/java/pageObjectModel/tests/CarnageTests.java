@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import pageObjectModel.pages.*;
 import pageObjectModel.utilities.ConfigReader;
 import pageObjectModel.utilities.JobApplicationDataProvider;
+import pageObjectModel.utilities.RequestDataProvider;
 import pageObjectModel.utilities.Utilities;
 
 public class CarnageTests extends Utilities {
@@ -61,8 +62,13 @@ public class CarnageTests extends Utilities {
 //        Thread.sleep(1000);
 //    }
 
-    @Test
-    public void requestSupport() {
-
+    @Test(dataProvider = "requestData", dataProviderClass = RequestDataProvider.class)
+    public void requestSupport(String requestType, String firstName, String lastName, String contactNumber, String email, String orderNumber) throws InterruptedException {
+        BasePage basePage = PageFactory.initElements(browserFactory.getDriver(), BasePage.class);
+        CarnageHomePage homePage = basePage.loadUrl(url);
+        homePage.scrollPage(0, 1000);
+        CarnageSupport carnageSupport =  homePage.submitRequestButton();
+        carnageSupport.fillRequestForm(requestType, firstName, lastName, contactNumber, email, orderNumber);
+        Thread.sleep(1000);
     }
 }
