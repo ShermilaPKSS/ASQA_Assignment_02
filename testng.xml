@@ -1,0 +1,26 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="CarnageTestsSuite" parallel="tests" thread-count="2">
+
+    <!-- Run tests 1, 2, 4, and 5 in one browser instance -->
+    <test name="CarnageTests_Group1">
+        <classes>
+            <class name="pageObjectModel.tests.CarnageTests">
+                <methods>
+                    <include name="applyToJob"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <!-- Run test 3 in a separate browser instance -->
+    <test name="CarnageTests_Group2">
+        <classes>
+            <class name="pageObjectModel.tests.CarnageTests">
+                <methods>
+                    <include name="addAndRemoveBag"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>
