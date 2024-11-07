@@ -8,7 +8,7 @@ public class RequestDataProvider {
     @DataProvider(name = "requestData")
     public Object[][] getRequestData() throws IOException {
         ExcelReader excelReader = new ExcelReader();
-        return excelReader.getDataFromExcel("C:/Users/Sachini/4th Year/support requests tests.xlsx");
+        return excelReader.getDataFromExcel("src/main/resources/support requests tests.xlsx");
 
     }
 }
